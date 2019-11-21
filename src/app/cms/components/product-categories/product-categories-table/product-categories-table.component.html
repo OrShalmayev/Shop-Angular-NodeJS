@@ -1,0 +1,50 @@
+<table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th>#ID</th>
+        <th>Name</th>
+        <th>Slug</th>
+        <th>Image</th>
+        <th>Operations</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pC of productCategories">
+        <!-- ID -->
+        <td>{{ pC?._id}}</td>
+        <!-- NAME -->
+        <td>{{ pC?.name }}</td>
+        <!-- NAME -->
+        <td>{{ pC?.slug }}</td>
+        <!-- IMAGE -->
+        <td>
+          <img src="assets/{{pC?.images }}" class="img-thumbnail" width="100" height="100">
+        </td>
+        <!-- OPERATIONS -->
+        <td class="card__actions">
+            <input type="hidden" name="product_id" value="">
+
+            <!-- if there is an image in the current product category than allow removing the product category image -->
+            <div *ngIf="pC.images">
+              <input 
+              type="button" 
+              value="Delete" 
+              (click)="destroyProductCategory(pC?._id,  pC?.images)" 
+              class="btn btn-danger controller-btn">
+            </div>
+
+            <div *ngIf="!pC.images">
+              <input 
+              type="button" 
+              value="Delete" 
+              (click)="destroyProductCategory(pC?._id)" 
+              class="btn btn-danger controller-btn">
+            </div>
+            
+
+
+            <a [routerLink]="['/cms/product-categories/edit', pC._id]" class="btn btn-primary">Edit</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>

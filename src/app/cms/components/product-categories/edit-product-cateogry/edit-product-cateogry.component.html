@@ -1,0 +1,91 @@
+<h1>Edit Product Category</h1>
+    <form  class="example-form"  fxLayout="column" fxLayoutGap="20px" autocomplete="off"
+    (ngSubmit)="processForm()"
+    [formGroup]="form"
+    enctype="multipart/form-data">
+        <!-- NAME -->
+        <mat-form-field  class="example-full-width">
+            <input 
+            name="name" #nameEl
+            matInput 
+            placeholder="Name" value="{{productCategory?.name}}" required
+            formControlName="name">
+            <!-- Name Error -->
+            <mat-error *ngIf="nameError">
+                {{nameError}}
+            </mat-error>
+        </mat-form-field>
+
+        <!-- DESCRIPTION -->
+        <mat-form-field>
+            <textarea 
+            name="description" #descriptionEl
+            matInput 
+            placeholder="Description" value="{{productCategory?.description}}" required
+            formControlName="description">
+            </textarea>
+            <!-- Description Error -->
+            <mat-error *ngIf="descriptionError">
+                {{descriptionError}}
+            </mat-error>
+          </mat-form-field>
+        
+        <!-- Upload Image -->
+        <div *ngIf="productCategory?.images === 'default.png' || changeImage">
+            <!-- File input for the file-upload plugin, 
+                with special ng2-file-upload directive called ng2FileSelect -->
+            <input
+            type="file" 
+            ng2FileSelect 
+            [uploader]="uploader" />
+            <!-- button to trigger the file upload when submitted -->
+            <button type="button" class="btn btn-success btn-s" 
+            (click)="uploader.uploadAll()"
+            [disabled]="!uploader.getNotUploadedItems().length"
+            [hidden]="hideUploadBtn">
+                Upload Image
+            </button>
+        </div>
+       
+    <!-- Change Image -->
+    <div class="container" *ngIf="!changeImage && productCategory?.images !== 'default.png'">
+        <img 
+        src="assets/{{ !deleteImage ?  productCategory?.images : 'default.png'}}" 
+        #imageEl [alt]="productCategory?.images" 
+        class="image img-thumbnail">
+
+        <div class="middle">
+            <!-- Change the current image -->
+            <button type="button" class="btn btn-success" mat-button (click)="changeImage=true">
+                Change Image
+            </button>
+            <!-- Delete the current image -->
+            <button type="button" class="btn btn-danger ml-3" mat-button (click)="deleteImageFunc(imageEl)">
+                Delete Image
+            </button>
+        </div>
+    </div>
+    
+    <div fxLayout="row" fxLayoutGap="50%" >
+        <!-- Cancel Button -->
+        <button type="button" mat-raised-button color="warn" fxLayoutAlign="start" (click)="goBack()">
+            Cancel
+        </button>
+
+        <!-- Submit button -->
+        <button mat-raised-button color="primary" fxLayoutAlign="end"
+        *ngIf="disableSubmit"
+        type="submit"
+        disabled>
+            Update Product Category
+        </button>
+
+        <button mat-raised-button color="primary"
+        *ngIf="!disableSubmit"
+        type="submit">
+            Update Product Category
+        </button>
+
+    </div>
+    
+</form>

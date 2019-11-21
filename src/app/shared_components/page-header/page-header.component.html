@@ -1,0 +1,23 @@
+<div class="jumbotron jumbotron-fluid">
+    <div class="container row">
+        <div class="col-md-1 text-center">
+            <i class="material-icons">
+                {{headerIconInput}}
+            </i>
+        </div>
+        <div class="col-md-11">
+            <h1 class="display-4">{{headerTitleInput}}</h1>
+            <p class="lead">{{headerTextInput}}</p>
+        </div>
+    </div>
+</div>
+
+<div
+  class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom float-right">
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <button type="button" routerLink="create" mat-raised-button color="primary">
+        <i class="material-icons">add_circle_outline</i>
+        {{headerButtonDescription}}
+    </button>
+  </div>
+</div>

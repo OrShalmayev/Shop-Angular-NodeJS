@@ -1,0 +1,73 @@
+<h1>Add Product</h1>
+<form 
+(ngSubmit)="processForm()" 
+[formGroup]="form" 
+fxLayout="column" fxLayoutGap="20px" autocomplete="off" enctype="multipart/form-data">
+
+  <!-- SELECT PRODUCT CATEGORY -->
+  <mat-form-field >
+    <mat-select placeholder="Select Product Category" name="productCategory" formControlName="productCategory" required>
+      <mat-option *ngFor="let pC of productCategories" [value]="pC?._id">{{pC?.name}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="productCategoryErr">{{productCategoryErr}}</mat-error>
+  </mat-form-field>
+
+  <!-- NAME  -->
+  <mat-form-field>
+    <input matInput placeholder="Name" name="name" formControlName="name" required>
+    <mat-error *ngIf="nameErr">{{nameErr}}</mat-error>
+  </mat-form-field>
+  
+  <!-- DESCRIPTION -->
+  <mat-form-field>
+    <textarea matInput placeholder="Description" name="description" formControlName="description" required></textarea>
+    <mat-error *ngIf="descriptionErr">{{descriptionErr}}</mat-error>
+  </mat-form-field>
+  
+  <!-- PRICE -->
+  <mat-form-field>
+    <input matInput placeholder="Price" type="number" class="example-right-align" name="price" formControlName="price" required>
+    <span matPrefix>$&nbsp;</span>
+    <span matSuffix>.00</span>
+    <mat-error *ngIf="priceErr">{{priceErr}}</mat-error>
+  </mat-form-field>
+  
+  <!-- DISCOUNT -->
+  <mat-form-field [color]="">
+    <input matInput type="number" placeholder="Discount"  min="10" name="discount" formControlName="discount" required>
+    <mat-error *ngIf="discountErr">{{discountErr}}</mat-error>
+  </mat-form-field>
+  
+  <!-- IN STOCK -->
+  <mat-form-field [color]="">
+    <input matInput type="number" placeholder="In Stock"  min="10" name="inStock" formControlName="inStock" required>
+    <mat-error *ngIf="inStockErr">{{inStockErr}}</mat-error>
+  </mat-form-field>
+
+  <!-- UPLOAD IMAGE -->
+  <!-- File input for the file-upload plugin, with special ng2-file-upload directive called ng2FileSelect -->
+  <input
+  type="file" 
+  ng2FileSelect 
+  [uploader]="uploader" />
+  <!-- button to trigger the file upload when submitted -->
+  <button type="button" class="btn btn-success btn-s" 
+  (click)="uploader.uploadAll()"
+  [disabled]="!uploader.getNotUploadedItems().length"
+  [hidden]="hideUploadBtn">
+      Upload Image
+  </button>
+
+  <!-- FORM OPTIONS -->
+  <div fxLayout="row" fxLayoutGap="50%">
+    <!-- Cancel Button -->
+    <app-cancel-button></app-cancel-button>
+
+    <!-- Submit Button --> 
+     <button mat-raised-button color="primary" type="submit" [disabled]="formInvalid()">
+        Create Product
+    </button>
+
+  </div>
+  
+</form>

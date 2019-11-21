@@ -1,0 +1,65 @@
+    <form fxLayout="column" fxLayoutGap="20px" autocomplete="off"
+    (ngSubmit)="processForm()"
+    [formGroup]="form"
+    enctype="multipart/form-data">
+        <!-- NAME -->
+        <mat-form-field >
+            <input 
+            name="name" 
+            matInput 
+            placeholder="Name" value="" required
+            formControlName="name">
+            <!-- Name Error -->
+            <mat-error *ngIf="nameError">
+                {{nameError}}
+            </mat-error>
+        </mat-form-field>
+
+        <!-- DESCRIPTION -->
+        <mat-form-field>
+            <textarea 
+            name="description"
+            matInput 
+            placeholder="Description" value="" required
+            formControlName="description">
+            </textarea>
+            <!-- Description Error -->
+            <mat-error *ngIf="descriptionError">
+                {{descriptionError}}
+            </mat-error>
+          </mat-form-field>
+          <!-- Image -->
+        <!-- File input for the file-upload plugin, with special ng2-file-upload directive called ng2FileSelect -->
+        <input
+        type="file" 
+        ng2FileSelect 
+        [uploader]="uploader" />
+        <!-- button to trigger the file upload when submitted -->
+        <button type="button" class="btn btn-success btn-s" 
+        (click)="uploader.uploadAll()"
+        [disabled]="!uploader.getNotUploadedItems().length"
+        [hidden]="hideUploadBtn">
+            Upload Image
+        </button>
+    
+    <div fxLayout="row" fxLayoutGap="50%">
+        <!-- Cancel Button -->
+        <app-cancel-button></app-cancel-button>
+
+        <!-- Submit button -->
+        <button mat-raised-button color="primary" fxLayoutAlign="end"
+        *ngIf="disableSubmit"
+        type="submit"
+        disabled>
+            Add Product Category
+        </button>
+
+        <button mat-raised-button color="primary"
+        *ngIf="!disableSubmit"
+        type="submit">
+            Add Product Category
+        </button>
+
+    </div>
+    
+</form>

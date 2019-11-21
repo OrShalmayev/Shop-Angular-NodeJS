@@ -1,0 +1,38 @@
+<app-page-header
+[headerIconInput]="headerIconInput"
+[headerTitleInput]="headerTitleInput"
+[headerTextInput]="headerTextInput"
+[headerButtonDescription]="headerButtonDescription"
+></app-page-header>
+
+<h2>Section title</h2>
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th>#ID</th>
+        <th>Name</th>
+        <th>Discount</th>
+        <th>Price</th>
+        <th>In Stock</th>
+        <th>Category Slug</th>
+        <th>Operations</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of products">
+        <td>{{p._id}}</td>
+        <td>{{p.name}}</td>
+        <td>{{p.discount}}</td>
+        <td>{{p.price}}</td>
+        <td>{{p.inStock}}</td>
+        <td>{{p.category_slug}}</td>
+        <td class="card__actions">
+          <input type="hidden" name="product_id" value="">
+          <input type="button" value="Delete" class="btn btn-danger controller-btn">
+          <button class="btn btn-primary">Edit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

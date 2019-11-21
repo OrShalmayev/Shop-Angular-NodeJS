@@ -1,0 +1,19 @@
+<app-page-header
+[headerIconInput]="headerIconInput"
+[headerTitleInput]="headerTitleInput"
+[headerTextInput]="headerTextInput"
+[headerButtonDescription]="headerButtonDescription"
+></app-page-header>
+
+
+  <!-- Product Category Table. -->
+  <div class="table-responsive" >
+    <app-product-categories-table 
+    [productCategories]="productCategories"
+    [toDelete]="toDelete"
+    [destroyProductCategory]="destroyProductCategory"
+    [productCategoryService]="productCategoryService">
+  </app-product-categories-table>
+
+
+</div>

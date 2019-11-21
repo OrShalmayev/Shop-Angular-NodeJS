@@ -1,0 +1,81 @@
+<app-header></app-header>
+<!-- If Cart is not empty then show the table.. -->
+<h1 class="text-secondary text-center my-5">Shopping Cart </h1>
+    <table class="table mb-5">
+    <thead>
+            <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total</th>
+                <!-- <th scope="col">Discount(%)</th> -->
+                <!-- <th scope="col">After Discount</th>  -->
+                <!-- <th scope="col">Options</th> -->
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <!-- ITEM-->
+                    <th scope="row">
+                        <img src="" alt="" width="100" height="100">
+                        <a href=""></a>
+                    </th>
+                    <!-- PRICE -->
+                    <td>$</td>
+                    <!-- QUANTITY -->
+                    <td>    
+                           
+                            <div class="qntySection">
+                                <button data-op="minus" class="minus btn btn-outline-danger btn-remove" >-</button>
+                                <span class="qnty mx-3" ></span>
+                                <button data-op="plus" class="plus btn btn-outline-primary btn-add">+</button>
+                            </div>
+                    </td>
+                    <!-- TOTAL PRICE -->
+                    <td>$</td>
+
+                    
+                    <td>
+                        <form action="" method="post" class="cart-form">
+                            <button type="submit" class="btn btn-outline-danger add_qty_btn">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+
+    <div class="row my-5">
+        <div class="col-md-8 float-left"></div>
+        <div class="col-md-4 float-right">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>Total:</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Button for Checkout -->
+            <button class="form-control btn btn-primary" >CHECKOUT</button>
+
+            <form action="/checkout" method="POST" class="cart-form clear-cart" id="id_clear_cart">
+                <div class="form-group">
+                    <input type="submit" data-slug="" value="stripe data" class=" cart-form form-control btn btn-outline-warning">
+                </div>
+            </form>
+            <!-- Button for Clearing the cart -->
+            <form action="" method="POST" class="cart-form clear-cart" id="id_clear_cart">
+                <div class="form-group">
+                    <input type="submit" data-slug="" value="Clear Cart" class=" cart-form form-control btn btn-outline-warning">
+                </div>
+            </form>
+        </div>
+    </div>
+<!-- If no Products in cart then show this -->
+    <p>No Products In Cart...</p>
+     <a href="/shop" class="btn btn-outline-primary">Start Shopping Now</a>
+
+<app-footer></app-footer>

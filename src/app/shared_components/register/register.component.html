@@ -1,0 +1,51 @@
+<app-header></app-header>
+<div class="container">
+    <div *ngIf="errors">
+        <div class="alert alert-danger" role="alert">
+            {{errors}}
+        </div>
+    </div>
+    <!-- Default form register -->
+    <form [formGroup]="form" (ngSubmit)="processForm()">
+
+        <p class="h4 mb-4">Sign up</p>
+        <!-- E-mail -->
+        <div class="form-group">
+            <input 
+                required
+                formControlName="email"
+                type="email" name="email" class="form-control" placeholder="E-mail">
+            <small *ngIf="emailErr" class="text-danger">
+                {{emailErr}}
+            </small>
+        </div>
+
+
+        <!-- Password -->
+        <div class="form-group">
+            <input
+                required 
+                formControlName="password"
+                type="password" name="password" class="form-control" placeholder="Password" >
+            <small *ngIf="passwordErr" class="text-danger">
+                {{passwordErr}}
+            </small>
+        </div>
+
+
+        <!-- Sign up button -->
+        <button 
+        [disabled]="form.valid === false || isFormValid === false"
+        class="btn btn-info my-4 btn-block" 
+        type="submit">Sign in</button>
+
+        <!-- Terms of service -->
+        <p>By clicking
+            <em>Sign up</em> you agree to our
+            <a href="" target="_blank">terms of service</a>
+
+    </form>
+    <!-- Default form register -->
+</div>
+
+<app-footer></app-footer>
